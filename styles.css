@@ -116,3 +116,37 @@ footer {
 .card.go       { background: #3c8d30; }
 .card.dart     { background: #00b4ab; }
 .card.ejs      { background: #00c6ff; }
+
+.install {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  flex-wrap: wrap;
+}
+.os-block {
+  text-align: left;
+}
+
+.os-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.command {
+  background-color: #2d2d2d;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 8px;
+  border: 1px solid #404040;
+  white-space: nowrap;
+}
+
+.command:last-child {
+  margin-bottom: 0;
+}
