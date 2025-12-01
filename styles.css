@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap');
+* {
+  font-family: 'Comic Relief', cursive;
+}
+
+body {
+  background: #0d1117;
+  color: #ffffff;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+p em {
+  text-align: center;
+}
+
+.gitdownload {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+header {
+  text-align: center;
+  border-bottom: #545050 solid;
+}
+
+header nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 20pt;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+header nav {
+  margin-bottom: 20px;
+}
+
+header p {
+  font-size: 16pt;
+}
+
+header h2 {
+  font-size: 32pt;
+}
+
+header h1 {
+  font-size: 50pt;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;        
+  gap: 16px;              
+  padding: 40px;
+  justify-content: center;      
+  min-height: 100vh;
+  text-align: left;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  min-width: 140px;
+  width: 192px;
+  height: 60px;
+}
+
+.card:hover {
+  opacity: 0.8;
+}
+
+footer {
+  border-top: #545050 solid;
+}
+
+.card.git      { background: #f34f29; }          
+.card.bash     { background: #4eaa25; }          
+.card.docker   { background: #2496ed; }          
+.card.html     { background: #e34c26; }
+.card.css      { background: #264de4; }
+.card.js       { background: #b49d08;} 
+.card.c        { background: #555555; }
+.card.cpp      { background: #004482; }
+.card.cs       { background: #68217a; }
+.card.python   { background: #3770a1; }
+.card.java     { background: #ea2d2e; }
+.card.react    { background: #61dafb; }
+.card.angular  { background: #dd0031; }
+.card.jquery   { background: #0769ad; }
+.card.sql      { background: #f29111; }
+.card.rust     { background: #dea584; }
+.card.ascii    { background: #6d6d6d; }
+.card.go       { background: #3c8d30; }
+.card.dart     { background: #00b4ab; }
+.card.ejs      { background: #00c6ff; }
