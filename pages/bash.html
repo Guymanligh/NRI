@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnProgLang: Bash Scripting</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>LearnProgLang</h1>
+        <h2>Bash</h2>
+        <nav>
+            <a href="../index.html">Басты бетке оралу</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <h2>1. Bash деген не? Неге керек?</h2>
+        <p>Bash — Linux/macOS-тың командалық қабығы. GUI-сыз серверді басқару, скрипт жазу, автоматтандыру — бәрі осы арқылы жүреді.</p>
+        <p>Нағыз программисттің суперқабілеті!</p>
+
+        <h2>2. Терминалды қалай ашамыз?</h2>
+        <div class="command"># Windows → Git Bash, WSL2 немесе Windows Terminal</div>
+        <div class="command"># macOS → Cmd + Space → "Terminal"</div>
+        <div class="command"># Linux → Ctrl + Alt + T</div>
+
+        <h2>3. Негізгі командалар (күнде 100% қолданасың)</h2>
+        <div class="command">pwd                          # қай жердемін?</div>
+        <div class="command">ls                           # файлдарды көрсету</div>
+        <div class="command">ls -la                       # жасырын файлдармен бірге</div>
+        <div class="command">cd Documents                 # папкаға кіру</div>
+        <div class="command">cd ..                        # бір деңгей жоғары</div>
+        <div class="command">cd ~                         # үй папкасына</div>
+        <div class="command">cd /                         # түбір папка</div>
+        <div class="command">mkdir project                # жаңа папка</div>
+        <div class="command">touch file.txt               # бос файл құру</div>
+        <div class="command">rm file.txt                  # файлды өшіру</div>
+        <div class="command">rm -r folder                 # папканы өшіру (абайла!)</div>
+        <div class="command">cp file.txt copy.txt         # көшірме жасау</div>
+        <div class="command">mv old.txt new.txt           # атын өзгерту / жылжыту</div>
+        <div class="command">cat file.txt                 # файл мазмұнын шығару</div>
+        <div class="command">less file.txt                # үлкен файлды парақтап оқу</div>
+        <div class="command">echo "Сәлем!"               # мәтін шығару</div>
+        <div class="command">echo "Сәлем!" > file.txt     # файлға жазу</div>
+        <div class="command">echo "Қосымша" >> file.txt  # қосу</div>
+
+        <h2>4. Файлдармен жұмыс (пайдалы трюктар)</h2>
+        <div class="command">find . -name "*.js"          # барлық JS файлдарды табу</div>
+        <div class="command">grep "error" log.txt         # мәтіннен іздеу</div>
+        <div class="command">grep -r "TODO" .             # бүкіл проектіден іздеу</div>
+        <div class="command">wc -l file.txt                 # жолдар санын санау</div>
+        <div class="command">head -n 10 file.txt            # алғашқы 10 жол</div>
+        <div class="command">tail -n 10 file.txt            # соңғы 10 жол</div>
+        <div class="command">tail -f log.txt                # логты "тірі" бақылау</div>
+
+        <h2>5. Процестер және жүйе</h2>
+        <div class="command">ps aux                        # барлық процестер</div>
+        <div class="command">top                          # тікелей мониторинг (q басып шығу)</div>
+        <div class="command">htop                         # әдемі top (орнату керек)</div>
+        <div class="command">kill 12345                    # процесті тоқтату</div>
+        <div class="command">kill -9 12345                 # күштеп өлтіру</div>
+        <div class="command">df -h                         # диск орны</div>
+        <div class="command">du -sh *                       # папкалар өлшемі</div>
+        <div class="command">free -h                       # жедел жады</div>
+
+        <h2>6. Бірінші скрипт жазамыз!</h2>
+        <div class="command">nano hello.sh</div>
+        <p>Ішіне жаз:</p>
+        <div class="command">#!/bin/bash
+echo "Сәлем, әлем!"
+echo "Бүгін: $(date)"
+echo "Сен: $USER"</div>
+        <div class="command">chmod +x hello.sh            # орындауға рұқсат</div>
+        <div class="command">./hello.sh                   # іске қосу</div>
+
+        <h2>7. Айнымалылар (Variables)</h2>
+        <div class="command">NAME="Азамат"</div>
+        <div class="command">echo "Сәлем, $NAME"</div>
+        <div class="command">echo 'Сәлем, $NAME'          # бір жақшамен өзгермейді</div>
+        <div class="command">readonly PI=3.14             # өзгертуге болмайтын</div>
+        <div class="command">export DATABASE_URL="postgresql://..."  # басқа скрипттерге беру</div>
+
+        <h2>8. Шарттар (if, else)</h2>
+        <div class="command">if [ "$1" = "admin" ]; then
+    echo "Қош келдіңіз, әкімші!"
+elif [ "$1" = "user" ]; then
+    echo "Қалыпты пайдаланушы"
+else
+    echo "Кімсің сен?"
+fi</div>
+
+        <h2>9. Циклдар (for, while)</h2>
+        <div class="command"># 1-ден 10-ға дейін</div>
+        <div class="command">for i in {1..10}; do
+    echo "Сан: $i"
+done</div>
+        <div class="command"># Барлық .txt файлдарды өңдеу</div>
+        <div class="command">for file in *.txt; do
+    echo "Өңдеп жатырмын: $file"
+done</div>
+
+        <h2>10. Функциялар</h2>
+        <div class="command">backup() {
+    tar -czf backup_$(date +%F).tar.gz $1
+    echo "$1 архивтелді!"
+}
+backup /home/user/documents</div>
+
+        <h2>11. Пайдалы трюктар (Middle+)</h2>
+        <div class="command">history | grep git           # бұрынғы командалардан іздеу</div>
+        <div class="command">Ctrl + R                     # кері іздеу (сиқыр!)</div>
+        <div class="command">!!                          # соңғы команданы қайталау</div>
+        <div class="command">sudo !!                     # соңғы команданы sudo-мен қайталау</div>
+        <div class="command">cd -                         # алдыңғы папкаға қайту</div>
+        <div class="command">alias gs='git status'      # қысқарту (~/.bashrc-қа жаз)</div>
+
+        <h2>12. Senior деңгейі – нағыз DevOps</h2>
+        <div class="command"># Бір жолда бірнеше команда</div>
+        <div class="command">cd /tmp && wget file.zip && unzip file.zip && rm file.zip</div>
+        <div class="command"># && = алдыңғысы сәтті болса ғана</div>
+        <div class="command"># || = алдыңғысы сәтсіз болса</div>
+        <div class="command">make || echo "Қате шықты!"</div>
+        <div class="command"># Пайп (pipe) – бір команданың шығысын екіншісіне беру</div>
+        <div class="command">cat log.txt | grep "ERROR" | wc -l</div>
+        <div class="command"># Here-document</div>
+        <div class="command">cat << EOF > config.txt
+host=localhost
+port=5432
+user=admin
+EOF</div>
+    </main>
+
+    <footer>
+        <p>© LearnProgLang 2025. Барлық құқықтар қорғалған.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnProgLang: C</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .code-c {
+            background: #1e1e2e;
+            color: #cdd6f4;
+            padding: 18px;
+            border-radius: 12px;
+            margin: 15px 0;
+            border-left: 4px solid #89b4fa;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .output-c {
+            background: #11111b;
+            color: #a6e3a1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px dashed #89b4fa;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LearnProgLang</h1>
+        <h2>C</h2>
+        <nav>
+            <a href="../index.html">Басты бетке оралу</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <h2>1. C тілі деген не? Неге үйренеміз?</h2>
+        <p>C – ең жылдам, ең төменгі деңгейлі, ең күшті тілдердің бірі. Операциялық жүйелер, драйверлер, ядролар, ойындар, микроконтроллерлер – бәрі C-та жазылған!</p>
+
+        <h2>2. Орнату және алғашқы программа</h2>
+        <div class="command"># Linux/macOS
+sudo apt install gcc          # Ubuntu/Debian
+brew install gcc              # macOS
+
+# Windows → MinGW немесе MSYS2 орнату</div>
+
+        <div class="code-c"># hello.c
+#include <stdio.h>
+
+int main() {
+    printf("Сәлем, C әлемі!\n");
+    return 0;
+}</div>
+
+        <div class="command"># Компиляция және іске қосу
+gcc hello.c -o hello
+./hello</div>
+
+        <div class="output-c">Сәлем, C әлемі!</div>
+
+        <h2>3. Айнымалылар және деректер түрлері</h2>
+        <div class="code-c">int    age = 25;           // бүтін сан
+float  height = 1.75;      // ондық сан
+double pi = 3.14159;       // дәлірек ондық
+char   letter = 'A';       // бір символ
+char   name[] = "Азамат";  // мәтін (массив)</div>
+
+        <h2>4. printf() және scanf() – кіріс/шығыс</h2>
+        <div class="code-c">printf("Атыңыз: %s, жасыңыз: %d\n", name, age);
+
+scanf("%d", &age);         // & – адрес операторы (маңызды!)</div>
+
+        <h2>5. Шарттар (if, else)</h2>
+        <div class="code-c">if (age >= 18) {
+    printf("Ересексіз!\n");
+} else if (age >= 13) {
+    printf("Жасөспірімсіз\n");
+} else {
+    printf("Баласыз\n");
+}</div>
+
+        <h2>6. Циклдар</h2>
+        <div class="code-c">// for
+for (int i = 1; i <= 10; i++) {
+    printf("%d ", i);
+}
+
+// while
+int i = 0;
+while (i < 5) {
+    printf("Сәлем %d\n", i++);
+}
+
+// do-while (кемінде бір рет орындайды)
+do {
+    printf("Бұл шығады!\n");
+} while (0);</div>
+
+        <h2>7. Массивтер</h2>
+        <div class="code-c">int numbers[5] = {10, 20, 30, 40, 50};
+
+for (int i = 0; i < 5; i++) {
+    printf("numbers[%d] = %d\n", i, numbers[i]);
+}
+
+// Екі өлшемді массив
+int matrix[2][3] = {
+    {1, 2, 3},
+    {4, 5, 6}
+};</div>
+
+        <h2>8. Функциялар</h2>
+        <div class="code-c">// Прототип (алдын ала жариялау)
+int add(int a, int b);
+
+int main() {
+    int sum = add(5, 7);
+    printf("Қосынды: %d\n", sum);
+    return 0;
+}
+
+// Анықтама
+int add(int a, int b) {
+    return a + b;
+}</div>
+
+        <h2>9. Pointer (Көрсеткіш) – C-тың жүрегі</h2>
+        <div class="code-c">int x = 10;
+int *p = &x;        // p – x-тың адресі
+
+printf("x мәні: %d\n", x);
+printf("p арқылы: %d\n", *p);    // *p = x мәні
+
+*p = 99;            // x енді 99 болады!
+printf("Енді x = %d\n", x);</div>
+
+        <h2>10. Структуры (struct)</h2>
+        <div class="code-c">typedef struct {
+    char name[50];
+    int age;
+    float gpa;
+} Student;
+
+Student s1;
+strcpy(s1.name, "Азамат");
+s1.age = 20;
+s1.gpa = 3.8;
+
+printf("Студент: %s, GPA: %.2f\n", s1.name, s1.gpa);</div>
+
+        <h2>11. Файлдармен жұмыс</h2>
+        <div class="code-c">FILE *file = fopen("data.txt", "w");
+fprintf(file, "Сәлем файл!\n");
+fclose(file);
+
+FILE *file2 = fopen("data.txt", "r");
+char buffer[100];
+fgets(buffer, 100, file2);
+printf("Файлдан: %s", buffer);
+fclose(file2);</div>
+
+        <h2>12. Dynamic memory (malloc, free)</h2>
+        <div class="code-c">#include <stdlib.h>
+
+int *arr = (int*)malloc(5 * sizeof(int));
+for (int i = 0; i < 5; i++) {
+    arr[i] = i * 10;
+}
+
+free(arr);          // міндетті түрде босату!</div>
+
+        <h2>13. Senior деңгейі – нағыз C профи</h2>
+        <div class="code-c">// Bitwise операторлар
+x & y    // AND
+x | y    // OR
+x ^ y    // XOR
+x << 2   // солға жылжыту (×4)
+x >> 1   // оңға жылжыту (÷2)
+
+// Preprocessor директивасы
+#define PI 3.14159
+#define MAX(a,b) ((a)>(b)?(a):(b))
+
+// Linked List (ең классика)
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;</div>
+
+
+    </main>
+
+    <footer>
+        <p>© LearnProgLang 2025. Барлық құқықтар қорғалған.</p>
+    </footer>
+</body>
+</html>

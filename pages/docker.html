@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnProgLang: Docker</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <h1>LearnProgLang</h1>
+        <h2>Docker</h2>
+        <nav>
+            <a href="../index.html">Басты бетке оралу</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <h2>1. Docker деген не? Неге керек?</h2>
+        <p>Docker — бағдарламаны оның барлық тәуелділіктерімен (либ, конфиг, ОС кітапханалары) бірге орап, кез келген жерде бірдей жұмыс істейтін етіп қаптайтын құрал.</p>
+        <p>«Менің компьютерімде жұмыс істейді» мәңгілік мәселесін шешеді!</p>
+
+        <h2>2. Docker орнату</h2>
+        <div class="command"># Windows / macOS → https://www.docker.com/products/docker-desktop</div>
+        <div class="command"># Ubuntu/Debian</div>
+        <div class="command">sudo apt update && sudo apt install docker.io</div>
+        <div class="command">sudo systemctl start docker && sudo systemctl enable docker</div>
+        <div class="command"># Тексеру</div>
+        <div class="command">docker version</div>
+        <div class="command">docker run hello-world</div>
+
+        <h2>3. Негізгі түсініктер</h2>
+        <p><strong>Image</strong> — дайын қапталған бағдарлама (мысалы: nginx:latest)</p>
+        <p><strong>Container</strong> — іске қосылған image</p>
+        <p><strong>Dockerfile</strong> — image-ті қалай құру керектігі жазылған рецепт</p>
+        <p><strong>Volume</strong> — контейнерден тыс сақталатын деректер</p>
+        <p><strong>Network</strong> — контейнерлердің бір-бірімен сөйлесуі</p>
+
+        <h2>4. Бірінші контейнер іске қосамыз</h2>
+        <div class="command">docker run nginx:latest</div>
+        <div class="command">docker run -d -p 8080:80 --name my-web nginx</div>
+        <div class="command"># -d = фонда, -p = порт, --name = ат беру</div>
+        <div class="command">docker ps                     # қазір жұмыс істеп жатқан контейнерлер</div>
+        <div class="command">docker ps -a                  # барлығы</div>
+        <div class="command">docker stop my-web</div>
+        <div class="command">docker start my-web</div>
+        <div class="command">docker rm my-web              # өшіру</div>
+
+        <h2>5. Өз image-ті құрамыз (Dockerfile)</h2>
+        <p>Жаңа папка құрып, ішіне мынаны жаз:</p>
+        <div class="command">mkdir my-node-app && cd my-node-app</div>
+        <div class="command">touch app.js Dockerfile</div>
+        <p>app.js:</p>
+        <div class="command">console.log("Сәлем Docker!")</div>
+        <p>Dockerfile:</p>
+        <div class="command">FROM node:18-alpine
+WORKDIR /app
+COPY . .
+CMD ["node", "app.js"]</div>
+        <div class="command"># Image құру</div>
+        <div class="command">docker build -t my-node-app:latest .</div>
+        <div class="command"># Іске қосу</div>
+        <div class="command">docker run my-node-app:latest</div>
+
+        <h2>6. Docker Hub – дайын image-тер қоймасы</h2>
+        <div class="command">docker search redis</div>
+        <div class="command">docker pull redis:latest</div>
+        <div class="command">docker tag my-node-app azamat/my-node-app</div>
+        <div class="command">docker push azamat/my-node-app     # алдымен docker login</div>
+
+        <h2>7. Volume – деректерді сақтау</h2>
+        <div class="command"># PostgreSQL мысалы</div>
+        <div class="command">docker run -d \
+  --name my-postgres \
+  -e POSTGRES_PASSWORD=secret \
+  -v pgdata:/var/lib/postgresql/data \
+  -p 5432:5432 \
+  postgres:15</div>
+
+        <h2>8. docker-compose.yml – бірден бірнеше контейнер</h2>
+        <p>wordpress + mysql мысалы:</p>
+        <div class="command">version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: wordpress
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_PASSWORD: secret
+volumes:
+  db_data:</div>
+        <div class="command">docker-compose up -d</div>
+        <div class="command">docker-compose down</div>
+
+        <h2>9. Пайдалы командалар (Middle+)</h2>
+        <div class="command">docker logs my-web            # логтарды көру</div>
+        <div class="command">docker exec -it my-web bash # контейнер ішіне кіру</div>
+        <div class="command">docker stats                  # CPU/RAM мониторинг</div>
+        <div class="command">docker system prune -a     # бәрін тазалау (абайла!)</div>
+        <div class="command">docker image ls</div>
+        <div class="command">docker volume ls</div>
+        <div class="command">docker network ls</div>
+
+        <h2>10. Senior деңгейі – нағыз DevOps</h2>
+        <div class="command"># Multi-stage build (өлшемді кішірейту)</div>
+        <div class="command">FROM node:18 as builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM node:18-alpine
+WORKDIR /app
+COPY --from=builder /app/dist ./dist
+CMD ["node", "dist/index.js"]</div>
+
+        <div class="command"># .dockerignore (node_modules кірмесін)</div>
+        <div class="command">node_modules
+.git
+.env
+npm-debug.log</div>
+
+        <div class="command"># Healthcheck</div>
+        <div class="command">HEALTHCHECK --interval=30s --timeout=3s \
+  CMD curl -f http://localhost/ || exit 1</div>
+
+    </main>
+
+    <footer>
+        <p>© LearnProgLang 2025. Барлық құқықтар қорғалған.</p>
+    </footer>
+</body>
+</html>

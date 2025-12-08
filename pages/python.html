@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnProgLang: Python</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .code-py {
+            background: #0d1117;
+            color: #c9d1d9;
+            padding: 20px;
+            border-radius: 14px;
+            margin: 16px 0;
+            border-left: 5px solid #ffd43b;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .output-py {
+            background: #161b22;
+            color: #a5e6a1;
+            padding: 16px;
+            border-radius: 10px;
+            margin: 12px 0;
+            border: 1px dashed #ffd43b;
+        }
+        .highlight { color: #ffd43b; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LearnProgLang</h1>
+        <h2>Python</h2>
+        <nav>
+            <a href="../index.html">Басты бетке оралу</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <h2>1. Python деген не? Неге №1 тіл?</h2>
+        <p>Python – ең оңай оқытылатын, ең жылдам жазылатын, ең көп қолданылатын тіл.  
+        Веб (Django/Flask), AI/ML (TensorFlow), автоматизация, DevOps, ойындар, мобильді қосымшалар – бәрі Python-да!</p>
+
+        <h2>2. Орнату және алғашқы код</h2>
+        <div class="command"># Windows/macOS/Linux → https://python.org/downloads
+python --version          # тексеру
+python -m venv venv       # виртуалды орта
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows</div>
+
+        <div class="code-py"># hello.py
+print("Сәлем, Python әлемі!")
+print("Бүгін:", __import__('datetime').datetime.now())</div>
+
+        <div class="command">python hello.py</div>
+        <div class="output-py">Сәлем, Python әлемі!</div>
+
+        <h2>3. Айнымалылар және түрлер</h2>
+        <div class="code-py">name = "Азамат"           # str
+age = 27                   # int
+height = 1.75              # float
+is_student = True          # bool
+grades = [90, 85, 88]      # list
+person = {"name": "Али", "age": 25}  # dict
+colors = {"қырмызы", "жасыл"}        # set
+coords = (10, 20)          # tuple (өзгермейді)</div>
+
+        <h2>4. Шарттар және циклдар</h2>
+        <div class="code-py">if age >= 18:
+    print("Ересек")
+elif age >= 13:
+    print("Жасөспірім")
+else:
+    print("Бала")
+
+for i in range(5):
+    print(i)
+
+fruits = ["алма", "банан", "апельсин"]
+for fruit in fruits:
+    print(fruit)
+
+i = 0
+while i < 3:
+    print("Сәлем", i)
+    i += 1</div>
+
+        <h2>5. Функциялар</h2>
+        <div class="code-py">def hello(name="әлем"):
+    return f"Сәлем, {name}!"
+
+print(hello("Али"))
+print(hello())
+
+# Lambda
+square = lambda x: x ** 2
+print(square(5))    # 25</div>
+
+        <h2>6. List Comprehension – Python сиқыры</h2>
+        <div class="code-py">squares = [x**2 for x in range(10)]
+evens = [x for x in range(20) if x % 2 == 0]
+names_upper = [name.upper() for name in ["али", "айша"]]</div>
+
+        <h2>7. Класс және OOP</h2>
+        <div class="code-py">class Car:
+    def __init__(self, brand, year):
+        self.brand = brand
+        self.year = year
+    
+    def start(self):
+        print(f"{self.brand} қозғалтқышы іске қосылды!")
+
+my_car = Car("Toyota", 2024)
+my_car.start()</div>
+
+        <h2>8. Модульдер және пакеттер</h2>
+        <div class="code-py">import math
+print(math.pi)
+
+from datetime import datetime
+print(datetime.now())
+
+# Өз модулің
+# mymodule.py ішіне def hello(): print("Сәлем")
+import mymodule
+mymodule.hello()</div>
+
+        <h2>9. Файлдармен жұмыс</h2>
+        <div class="code-py">with open("data.txt", "w", encoding="utf-8") as f:
+    f.write("Сәлем файл!\nPython керемет!")
+
+with open("data.txt", "r", encoding="utf-8") as f:
+    content = f.read()
+    print(content)</div>
+
+        <h2>10. Exception handling</h2>
+        <div class="code-py">try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print("Нөлге бөлуге болмайды!")
+except Exception as e:
+    print("Қате:", e)
+else:
+    print("Бәрі жақсы")
+finally:
+    print("Аяқталды")</div>
+
+        <h2>11. Async/Await (C# сияқты!)</h2>
+        <div class="code-py">import asyncio
+import aiohttp
+
+async def get_site():
+    async with aiohttp.ClientSession() as session:
+        async with session.get("https://httpbin.org/json") as resp:
+            data = await resp.json()
+            print(data["slideshow"]["title"])
+
+asyncio.run(get_site())</div>
+
+        <h2>12. Middle+ деңгейі – нағыз Pythonista</h2>
+        <div class="code-py"># Декораторлар
+def timer(func):
+    def wrapper(*args):
+        import time
+        start = time.time()
+        result = func(*args)
+        print(f"Орындалу уақыты: {time.time() - start:.2f}с")
+        return result
+    return wrapper
+
+@timer
+def slow_function():
+    time.sleep(2)
+    print("Аяқталды")
+
+slow_function()
+
+# Generator
+def fibonacci():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
+
+for num in fibonacci():
+    if num > 100: break
+    print(num)</div>
+
+        <h2>13. Senior деңгейі – нағыз Python профи</h2>
+        <div class="code-py"># Dataclasses (C# record сияқты)
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    name: str
+    age: int
+    city: str = "Алматы"
+
+p = Person("Али", 25)
+print(p)
+
+# Type hints + mypy
+def add(a: int, b: int) -> int:
+    return a + b
+
+# FastAPI (2025-тегі №1 веб-фреймворк)
+from fastapi import FastAPI
+app = FastAPI()
+
+@app.get("/")
+async def home():
+    return {"message": "Сәлем FastAPI!"} 
+
+# uvicorn main:app --reload</div>
+
+
+    </main>
+
+    <footer>
+        <p>© LearnProgLang 2025. Барлық құқықтар қорғалған.</p>
+    </footer>
+</body>
+</html>

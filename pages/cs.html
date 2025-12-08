@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnProgLang: C#</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .code-cs {
+            background: #0d1117;
+            color: #c9d1d9;
+            padding: 20px;
+            border-radius: 14px;
+            margin: 16px 0;
+            border-left: 5px solid #9c51e0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .output-cs {
+            background: #161b22;
+            color: #a5e6a1;
+            padding: 16px;
+            border-radius: 10px;
+            margin: 12px 0;
+            border: 1px dashed #9c51e0;
+        }
+        .highlight { color: #9c51e0; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LearnProgLang</h1>
+        <h2>C#</h2>
+        <nav>
+            <a href="../index.html">Басты бетке оралу</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <h2>1. C# деген не? Неге үйренеміз?</h2>
+        <p>C# – Microsoft-тың заманауи, қауіпсіз, объектіге бағытталған тілі.  
+        Windows бағдарламалары, ойындар (Unity), веб (ASP.NET), мобильді қосымшалар (MAUI/Xamarin), бұлт (Azure) – бәрі C#-та!</p>
+
+        <h2>2. Орнату және алғашқы программа</h2>
+        <div class="command"># .NET SDK жүктеу
+https://dotnet.microsoft.com/download
+
+# Тексеру
+dotnet --version</div>
+
+        <div class="code-cs">// Program.cs
+using System;
+
+namespace HelloWorld
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Сәлем, C# әлемі!");
+        }
+    }
+}</div>
+
+        <div class="command"># Жаңа проект құру (Top-level statements – C# 10+)
+dotnet new console -o MyApp
+cd MyApp
+
+# Бір жолда ғана жазуға болады (Program.cs):
+Console.WriteLine("Сәлем C#!");
+
+# Іске қосу
+dotnet run</div>
+
+        <div class="output-cs">Сәлем C#!</div>
+
+        <h2>3. Айнымалылар және түрлер</h2>
+        <div class="code-cs">var name = "Али";           // автоматты түр
+string city = "Алматы";
+int age = 27;
+double salary = 500_000.50; // бөлу үшін _
+bool isStudent = true;
+char grade = 'A';
+
+var numbers = new[] {1, 2, 3};     // массив
+List<string> fruits = new() { "алма", "банан" };</div>
+
+        <h2>4. Шарттар және циклдар</h2>
+        <div class="code-cs">if (age >= 18)
+    Console.WriteLine("Ересек");
+else
+    Console.WriteLine("Бала");
+
+for (int i = 0; i < 5; i++)
+    Console.WriteLine(i);
+
+foreach (var fruit in fruits)
+    Console.WriteLine(fruit);
+
+int j = 0;
+while (j < 3) { Console.WriteLine(j); j++; }</div>
+
+        <h2>5. Класс және объект (OOP)</h2>
+        <div class="code-cs">public class Car
+{
+    public string Brand { get; set; }
+    public int Year { get; set; }
+
+    public Car(string brand, int year)
+    {
+        Brand = brand;
+        Year = year;
+    }
+
+    public void Start() => Console.WriteLine($"{Brand} іске қосылды!");
+}
+
+var myCar = new Car("Toyota", 2024);
+myCar.Start();</div>
+
+        <h2>6. Record – заманауи деректер класы (C# 9+)</h2>
+        <div class="code-cs">public record Person(string Name, int Age);
+
+var p1 = new Person("Азамат", 25);
+var p2 = new Person("Азамат", 25);
+
+Console.WriteLine(p1 == p2);    // true – мән бойынша салыстырады!</div>
+
+        <h2>7. LINQ – сиқырлы сұраулар</h2>
+        <div class="code-cs">var adults = people
+    .Where(p => p.Age >= 18)
+    .OrderBy(p => p.Name)
+    .Select(p => p.Name.ToUpper())
+    .ToList();
+
+foreach (var name in adults)
+    Console.WriteLine(name);</div>
+
+        <h2>8. Async/Await – асинхронды код (2025 стандарт)</h2>
+        <div class="code-cs">public async Task<string> GetWebPageAsync()
+{
+    using HttpClient client = new();
+    var html = await client.GetStringAsync("https://example.kz");
+    return html;
+}
+
+// Қолдану
+var html = await GetWebPageAsync();
+Console.WriteLine(html.Length);</div>
+
+        <h2>9. Файлдармен жұмыс</h2>
+        <div class="code-cs">// Жазу
+await File.WriteAllTextAsync("data.txt", "Сәлем файл!");
+
+// Оқу
+var text = await File.ReadAllTextAsync("data.txt");
+Console.WriteLine(text);
+
+// Барлық жолдар
+var lines = await File.ReadAllLinesAsync("log.txt");</div>
+
+        <h2>10. Middle+ деңгейі – нағыз .NET профи</h2>
+        <div class="code-cs">// Pattern matching (C# 9+)
+if (obj is Person { Age: > 18 } p)
+    Console.WriteLine($"{p.Name} ересек");
+
+// Null-coalescing + null-conditional
+string result = name?.ToUpper() ?? "Белгісіз";
+
+// Primary constructor (C# 12)
+public class Student(string name, int age)
+{
+    public string Name { get; } = name;
+    public int Age { get; } = age;
+}
+
+// Source Generators, Minimal API, EF Core
+var builder = WebApplication.CreateBuilder();
+var app = builder.Build();
+
+app.MapGet("/", () => "Сәлем ASP.NET Core!");
+app.Run();</div>
+
+        <h2>11. Senior деңгейі – нағыз архитектор</h2>
+        <div class="code-cs">// Dependency Injection (DI)
+services.AddScoped<IUserService, UserService>();
+services.AddDbContext<AppDbContext>(options => 
+    options.UseSqlServer(connectionString));
+
+// Clean Architecture + MediatR + CQRS
+public record CreateUserCommand(string Name, string Email) : IRequest<int>;
+public class CreateUserHandler : IRequestHandler<CreateUserCommand, int>
+{
+    public async Task<int> Handle(CreateUserCommand request, CancellationToken ct)
+    {
+        // логика...
+        return userId;
+    }
+}</div>
+
+    </main>
+
+    <footer>
+        <p>© LearnProgLang 2025. Барлық құқықтар қорғалған.</p>
+    </footer>
+</body>
+</html>

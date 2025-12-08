@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnProgLang: C++</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .code-cpp {
+            background: #1e1e2e;
+            color: #cdd6f4;
+            padding: 20px;
+            border-radius: 14px;
+            margin: 16px 0;
+            border-left: 5px solid #f5c2e7;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .output-cpp {
+            background: #11111b;
+            color: #a6e3a1;
+            padding: 16px;
+            border-radius: 10px;
+            margin: 12px 0;
+            border: 1px dashed #f5c2e7;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LearnProgLang</h1>
+        <h2>C++</h2>
+        <nav>
+            <a href="../index.html">Басты бетке оралу</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <h2>1. C++ деген не? Неге үйренеміз?</h2>
+        <p>C++ – C тілінің заманауи, объектіге бағытталған нұсқасы. Ойындар (Unreal Engine), браузерлер (Chrome), серверлер (Yandex, VK), графика, робототехника – бәрі C++-та!</p>
+
+        <h2>2. Орнату және алғашқы программа</h2>
+        <div class="command"># Linux
+sudo apt install g++ build-essential
+
+# macOS
+brew install gcc
+
+# Windows → MSYS2, MinGW-w64 немесе Visual Studio</div>
+
+        <div class="code-cpp">// hello.cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Сәлем, C++ әлемі!\n";
+    return 0;
+}</div>
+
+        <div class="command"># Компиляция
+g++ hello.cpp -o hello
+./hello</div>
+
+        <div class="output-cpp">Сәлем, C++ әлемі!</div>
+
+        <h2>3. Негізгі жаңалықтар C-тан айырмашылығы</h2>
+        <div class="code-cpp">#include <iostream>      // C-тағы printf орнына
+using namespace std;        // std:: деп жазбай-ақ қоюға болады
+
+cout << "Сәлем";            // шығару
+cin >> x;                   // кіріс
+
+string name = "Али";        // мәтін түрі (C-та жоқ!)
+bool isTrue = true;</div>
+
+        <h2>4. Класс және объект (OOP негізі)</h2>
+        <div class="code-cpp">class Car {
+public:
+    string brand;
+    int year;
+
+    void start() {
+        cout << brand << " қозғалтқышы іске қосылды!\n";
+    }
+};
+
+int main() {
+    Car myCar;
+    myCar.brand = "Toyota";
+    myCar.year = 2023;
+    myCar.start();
+}</div>
+
+        <h2>5. Конструктор және деструктор</h2>
+        <div class="code-cpp">class Student {
+public:
+    string name;
+    int age;
+
+    // Конструктор
+    Student(string n, int a) {
+        name = n;
+        age = a;
+        cout << name << " құрылды!\n";
+    }
+
+    // Деструктор
+    ~Student() {
+        cout << name << " жойылды!\n";
+    }
+};</div>
+
+        <h2>6. Инкапсуляция (private/public)</h2>
+        <div class="code-cpp">class BankAccount {
+private:
+    double balance = 0;
+
+public:
+    void deposit(double amount) {
+        if (amount > 0) balance += amount;
+    }
+    double getBalance() { return balance; }
+};</div>
+
+        <h2>7. Мұрагерлік (Inheritance)</h2>
+        <div class="code-cpp">class Animal {
+public:
+    void eat() { cout << "Ням-ням\n"; }
+};
+
+class Dog : public Animal {
+public:
+    void bark() { cout << "Үр-үр!\n"; }
+};
+
+int main() {
+    Dog rex;
+    rex.eat();   // мұраға алынған
+    rex.bark();
+}</div>
+
+        <h2>8. Полиморфизм және виртуалды функциялар</h2>
+        <div class="code-cpp">class Shape {
+public:
+    virtual void draw() { cout << "Фигура сызылды\n"; }
+};
+
+class Circle : public Shape {
+public:
+    void draw() override { cout << "Дөңгелек сызылды\n"; }
+};
+
+void render(Shape* s) { s->draw(); }  // полиморфизм</div>
+
+        <h2>9. STL – стандартты кітапхана (өте күшті!)</h2>
+        <div class="code-cpp">#include <vector>
+#include <string>
+#include <algorithm>
+
+vector<int> nums = {5, 2, 8, 1};
+sort(nums.begin(), nums.end());     // 1,2,5,8
+
+for (int n : nums) cout << n << " ";</div>
+
+        <h2>10. Smart Pointers (C++11+)</h2>
+        <div class="code-cpp">#include <memory>
+
+unique_ptr<Car> car = make_unique<Car>();
+// auto free – ешқашан memory leak болмайды!
+
+shared_ptr<Car> car2 = car;   // бірнеше иесі бола алады
+weak_ptr<Car> observer = car2; // циклді болдырмайды</div>
+
+        <h2>11. Lambda функциялар</h2>
+        <div class="code-cpp">auto sayHello = [](string name) {
+    cout << "Сәлем, " << name << "!\n";
+};
+sayHello("Азамат");
+
+// sort-та қолдану
+sort(nums.begin(), nums.end(), [](int a, int b) { return a > b; });</div>
+
+        <h2>12. Modern C++ (C++17/20/23)</h2>
+        <div class="code-cpp">// structured binding
+auto [x, y, z] = tuple{1, "сәлем", 3.14};
+
+// constexpr if
+if constexpr (sizeof(void*) == 8) {
+    cout << "64-бит жүйе\n";
+}
+
+// std::optional
+optional<string> maybeName = getName();
+if (maybeName) cout << *maybeName;</div>
+
+        <h2>13. Senior деңгейі – нағыз C++ профи</h2>
+        <div class="code-cpp">// Move семантикасы
+Car(Car&& other) noexcept {      // жылжыту конструкторы
+    data = std::move(other.data);
+}
+
+// Template (жалпылама программирование)
+template<typename T>
+T max(T a, T b) {
+    return (a > b) ? a : b;
+}
+
+// RAII принцип
+class File {
+    FILE* f;
+public:
+    File(const char* name) { f = fopen(name, "w"); }
+    ~File() { if(f) fclose(f); }
+};</div>
+
+    </main>
+
+    <footer>
+        <p>© LearnProgLang 2025. Барлық құқықтар қорғалған.</p>
+    </footer>
+</body>
+</html>
