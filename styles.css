@@ -195,28 +195,13 @@ main h2::after {
     opacity: 1;
 }
 
-/* ТЕХНОЛОГИЯ ТҮСТЕРІ */
-.card.git      { background: linear-gradient(135deg, #f34f29, #d83a1e); }
-.card.bash     { background: linear-gradient(135deg, #4eaa25, #3d8a1f); }
-.card.docker   { background: linear-gradient(135deg, #2496ed, #1a78c2); }
-.card.html     { background: linear-gradient(135deg, #e34c26, #c23b1e); }
-.card.css      { background: linear-gradient(135deg, #264de4, #1e3bb8); }
-.card.js       { background: linear-gradient(135deg, #f0db4f, #e6c629); color: #000; }
-.card.python   { background: linear-gradient(135deg, #3770a1, #2f5b87); }
-.card.react    { background: linear-gradient(135deg, #61dafb, #21a1f1); color: #000; }
-.card.java     { background: linear-gradient(135deg, #ea2d2e, #c41a1b); }
-.card.go       { background: linear-gradient(135deg, #00add8, #0088aa); }
-.card.rust     { background: linear-gradient(135deg, #dea584, #b8860b); color: #000; }
-.card.dart     { background: linear-gradient(135deg, #00b4ab, #008b8b); }
-.card.cpp      { background: linear-gradient(135deg, #004482, #002b55); }
-/* ЖАҢА КАРТОЧКАЛАР – C, C#, Angular, jQuery, SQL, ASCII, EJS */
-.card.c        { background: linear-gradient(135deg, #555555, #333333); }
-.card.cs       { background: linear-gradient(135deg, #68217a, #4a1659); }
-.card.angular  { background: linear-gradient(135deg, #dd0031, #b50028); }
-.card.jquery   { background: linear-gradient(135deg, #0769ad, #05507f); }
-.card.sql      { background: linear-gradient(135deg, #f29111, #d6770e); }
-.card.ascii    { background: linear-gradient(135deg, #6d6d6d, #4f4f4f); }
-.card.ejs      { background: linear-gradient(135deg, #00c6ff, #009fd9); }
+.card.python {
+    background: linear-gradient(135deg, #3770a1, #2f5b87);
+    width: 80%;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 /* ====================== FOOTER ====================== */
 footer {
@@ -226,7 +211,7 @@ footer {
     background: rgba(13, 17, 23, 0.95);
     font-size: 1.1rem;
     color: #8b949e;
-    margin-top: auto;
+    margin-top: 10px;
 }
 
 /* ====================== RESPONSIVE ====================== */
@@ -246,4 +231,132 @@ footer {
         flex: 1 1 48%;
         font-size: 1.2rem;
     }
+}
+.code-py {
+    background: var(--code-bg);
+    color: #c9d1d9;
+    padding: 20px;
+    border-radius: 14px;
+    margin: 16px 0;
+    border-left: 5px solid #ffd43b;
+    font-family: 'Courier New', monospace;
+    overflow-x: auto;
+}
+.output-py {
+    background: var(--code-bg);
+    color: #a5e6a1;
+    padding: 16px;
+    border-radius: 10px;
+    margin: 12px 0;
+    border: 1px dashed #ffd43b;
+}
+.highlight { color: #ffd43b; font-weight: bold; }
+/* ====================== СВЕТЛАЯ ТЕМА ====================== */
+html.light {
+  --bg: #f6f8fa;
+  --text: #24292f;
+  --border: #d0d7de;
+  --header-bg: rgba(255, 255, 255, 0.95);
+  --code-bg: #ffffff;
+  --code-border: #d0d7de;
+  --accent1: #8250df;
+  --accent2: #fd8c73;
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --card-border: rgba(255, 255, 255, 0.4);
+  --gradient-start: #8250df;
+  --gradient-end: #fd8c73;
+}
+
+html.light body {
+  background: var(--bg);
+  color: var(--text);
+  background-image: none;
+}
+
+html.light header,
+html.light footer {
+  background: var(--header-bg);
+  border-color: var(--border);
+}
+
+html.light .command,
+html.light .code-py {
+  background: var(--code-bg);
+  color: #24292f;
+  border-left-color: #12b886;
+  border-color: var(--code-border);
+}
+
+html.light .command::before {
+  color: #12b886;
+}
+
+html.light .card {
+  background: var(--card-bg);
+  border-color: var(--card-border);
+  color: #24292f;
+}
+
+html.light a { color: #8250df; }
+html.light a:hover { color: #fd8c73; }
+
+html.light main h2 { color: #8250df; }
+html.light main h2::after {
+  background: linear-gradient(90deg, #8250df, #fd8c73);
+}
+
+/* Кнопка смены темы */
+.theme-toggle {
+  position: absolute;
+  top: 1.8rem;
+  right: 2rem;
+  background: rgba(88, 166, 255, 0.2);
+  border: 1px solid rgba(88, 166, 255, 0.4);
+  color: #58a6ff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+  z-index: 100;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+html.light .theme-toggle {
+  background: rgba(130, 80, 223, 0.25);
+  border-color: rgba(130, 80, 223, 0.5);
+  color: #8250df;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.15) rotate(20deg);
+  box-shadow: 0 8px 25px rgba(88,166,255,0.4);
+}
+
+html.light .theme-toggle:hover {
+  box-shadow: 0 8px 25px rgba(130,80,223,0.4);
+}
+/* Кнопка темы — иконки */
+.theme-toggle .sun,
+.theme-toggle .moon {
+    position: absolute;
+    font-size: 1.7rem;
+    transition: opacity 0.4s ease;
+}
+.theme-toggle .moon { opacity: 0; }
+html.light .theme-toggle .sun { opacity: 0; }
+html.light .theme-toggle .moon { opacity: 1; }
+
+/* Заголовок h2 в шапке — всегда читаемый */
+header h2 {
+    color: #f0f6fc;
+    transition: color 0.4s ease;
+}
+html.light header h2 {
+    color: #24292f;
 }
