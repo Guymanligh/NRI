@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnProgLang: Python</title>
     <link rel="stylesheet" href="../styles.css">
-
-    <!-- Применяем тему до отрисовки страницы (никакого мигания!) -->
     <script>
         (function () {
             const saved = localStorage.getItem('theme');
@@ -25,7 +23,6 @@
     <header>
         <h1>LearnProgLang</h1>
 
-        <!-- Кнопка переключения темы -->
         <button class="theme-toggle" id="theme-toggle" aria-label="Тема ауыстыру">
             <span class="sun">☀️</span>
             <span class="moon">🌙</span>
@@ -38,14 +35,35 @@
     </header>
 
     <main>
+        <a href="pages/lesson1.html" class="card lesson">
+            <span>1 сабақ : Python деген не?</span>
+        </a>
+        <a href="pages/lesson2.html" class="card lesson">
+            <span>2 сабақ : Python-дағы қателер</span>
+        </a>
+        <a href="pages/lesson3.html" class="card lesson">
+            <span>3 сабақ : Python-да 1-ші ойын құрастыру</span>
+        </a>
+        <a href="pages/lesson4.html" class="card lesson">
+            <span>4 сабақ : Python-дағы 1-ші ойынды қарастыру</span>
+        </a>
         
+        <a href="pages/lesson5.html" class="card lesson">
+            <span>5 сабақ : Python-дағы 1-ші ойын құрыстыру</span>
+        </a>
+        <a href="pages/lesson6.html" class="card lesson">
+            <span>6 сабақ : Python-да бағдарламаларды орындау</span>
+        </a>
+        <a href="pages/lesson7.html" class="card lesson">
+            <span>7 сабақ : Python-дағы қарапайым командалар</span>
+        </a>
+        <a href=""></a>
     </main>
 
     <footer>
         <p>© LearnProgLang 2025. Барлық құқықтар қорғалған.</p>
     </footer>
 
-    <!-- Главный скрипт темы (один на весь сайт) -->
     <script src="../script.js" defer></script>
 </body>
 </html>

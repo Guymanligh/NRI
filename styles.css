@@ -360,3 +360,60 @@ header h2 {
 html.light header h2 {
     color: #24292f;
 }
+/* ====================== MONACO EDITOR ====================== */
+
+/* Общие стили редактора */
+.monaco-editor, .monaco-editor-background, .monaco-editor .margin, .monaco-editor .inputarea {
+    border-radius: 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Тёмная тема */
+html:not(.light) .monaco-editor {
+    background-color: var(--bg, #0d1117);
+    color: var(--text, #c9d1d9);
+}
+
+/* Светлая тема */
+html.light .monaco-editor {
+    background-color: var(--bg, #f6f8fa);
+    color: var(--text, #24292f);
+}
+
+/* Scrollbar для редактора */
+.monaco-scrollable-element {
+    scrollbar-color: rgba(88,166,255,0.5) transparent;
+}
+
+html.light .monaco-scrollable-element {
+    scrollbar-color: rgba(130,80,223,0.5) transparent;
+}
+
+/* Курсор */
+.monaco-editor .cursor {
+    background-color: #58a6ff !important;
+}
+
+html.light .monaco-editor .cursor {
+    background-color: #8250df !important;
+}
+
+/* Линия подсветки текущей строки */
+.monaco-editor .view-lines .current-line {
+    background-color: rgba(88,166,255,0.05);
+}
+
+html.light .monaco-editor .view-lines .current-line {
+    background-color: rgba(130,80,223,0.05);
+}
+
+/* Линия выделения */
+.monaco-editor .selected-text {
+    background-color: rgba(88,166,255,0.2);
+}
+
+html.light .monaco-editor .selected-text {
+    background-color: rgba(130,80,223,0.2);
+}
