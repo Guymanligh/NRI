@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Python Interpreter — Monaco + I/O (Auto theme + Auto-await)</title>
+  <title>Python compiler</title>
   <style>
     :root{
       --bg-light:#f6f8fb;--panel-light:#ffffff;--text-light:#0b1220;
@@ -26,107 +26,26 @@
       :root{--bg:var(--bg-light);--panel:var(--panel-light);--text:var(--text-light)}
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.49.0/min/vs/loader.js"></script>
+  
 </head>
 <body>
   <div class="wrap">
-    <h1>Python Interpreter — Monaco Editor + I/O</h1>
+    <h1>Python Компиляторы</h1>
     <div id="editor"></div>
     <div id="controls">
-      <button id="run">Run ▶</button>
-      <button id="clear">Clear Output</button>
-      <button id="download">Download</button>
+      <button id="run">Кодты орындау</button>
+      <button id="clear">Шығысты тазалау</button>
+      <button id="download">Кодты</button>
     </div>
     <div id="outputWrapper">
       <pre id="output"></pre>
-      <input id="inputLine" placeholder="Enter input and press Enter..." style="display:none;" />
+      <input id="inputLine" placeholder="Енгізуді енгізіп, Enter пернесін басыңыз..." style="display:none;" />
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.0/full/pyodide.js"></script>
+  
   <script>
-    // --- Monaco Editor setup with auto-theme ---
-    require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.49.0/min/vs' } });
-    let editor;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    const getMonacoTheme = () => (prefersDark.matches ? 'vs-dark' : 'vs');
-    function initMonaco(){
-      require(['vs/editor/editor.main'], function() {
-        editor = monaco.editor.create(document.getElementById('editor'), {
-          value: `# Пример\nname = input('Your name: ')\nprint('Hi', name)`,
-          language: 'python',
-          theme: getMonacoTheme(),
-          automaticLayout: true,
-          fontSize: 14,
-        });
-      });
-    }
-    initMonaco();
-    if(prefersDark){
-      prefersDark.addEventListener('change', e=>{ try{ monaco.editor.setTheme(e.matches ? 'vs-dark':'vs'); }catch{} });
-    }
-
-    // --- Output/input handling ---
-    const outEl = document.getElementById('output');
-    const inputLine = document.getElementById('inputLine');
-    function write(s){ outEl.textContent += String(s); outEl.scrollTop = outEl.scrollHeight; }
-    function clearOutput(){ outEl.textContent = ''; }
-
-    globalThis.py_input = (promptText)=>{
-      return new Promise(resolve => {
-        write(String(promptText));
-        inputLine.style.display = '';
-        inputLine.value = '';
-        inputLine.focus();
-        const onEnter = (e)=>{
-          if(e.key==='Enter'){
-            const v=inputLine.value;
-            write(' '+v+'\n');
-            inputLine.removeEventListener('keydown',onEnter);
-            inputLine.style.display='none';
-            resolve(v);
-          }
-        };
-        inputLine.addEventListener('keydown',onEnter);
-      });
-    };
-
-    globalThis.console_write = (s)=>write(s);
-
-    let pyodide = null;
-    (async()=>{
-      write('Loading Pyodide...\n');
-      pyodide = await loadPyodide({ indexURL:'https://cdn.jsdelivr.net/pyodide/v0.24.0/full/' });
-      write('Pyodide loaded.\n');
-    })();
-
-    document.getElementById('clear').addEventListener('click',()=>{ clearOutput(); });
-
-    document.getElementById('run').addEventListener('click',async()=>{
-      clearOutput();
-      if(!pyodide){ write('Pyodide not ready.\n'); return; }
-      let userCode = editor.getValue();
-      // Авто-добавление await для input
-      userCode = userCode.replace(/(^|\s)input\(/g,'$1await input(');
-
-      const prelude = `import sys\nfrom js import console_write, py_input\nclass _W:\n    def write(self,s):\n        if s is not None: console_write(s)\n    def flush(self): pass\nsys.stdout=_W()\nsys.stderr=_W()\nimport builtins\nasync def _input(prompt=''):\n    return await py_input(prompt)\nbuiltins.input=_input\n`;
-      try{
-        await pyodide.runPythonAsync(prelude+'\n'+userCode);
-      }catch(err){ write(String(err)+'\n'); }
-    });
-    document.getElementById('download').addEventListener('click', () => {
-    if (!editor) return;
-    const code = editor.getValue();
-    const blob = new Blob([code], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'learnpython.py'; // имя файла по умолчанию
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-});
+    
 
   </script>
 </body>

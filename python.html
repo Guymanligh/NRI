@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnProgLang: Python</title>
     <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.49.0/min/vs/loader.js"></script>
     <script>
         (function () {
             const saved = localStorage.getItem('theme');
@@ -58,12 +59,31 @@
             <span>7 сабақ : Python-дағы қарапайым командалар</span>
         </a>
         <a href=""></a>
+        <!-- ================= PYTHON INTERPRETER ================= -->
+        <section id="python-box">
+
+            <h2>Python интерпретатор</h2>
+
+            <div id="editor"></div>
+
+            <div id="controls">
+                <button id="run" class="btn-run">▶ Кодты орындау</button>
+                <button id="download" class="btn-download">⬇ Жүктеу .py</button>
+                <button id="clear">Тазалау</button>
+
+            </div>
+
+            <div id="output"></div>
+
+        </section>
+
     </main>
 
     <footer>
         <p>© LearnProgLang 2025. Барлық құқықтар қорғалған.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.0/full/pyodide.js"></script>
     <script src="../script.js" defer></script>
 </body>
 </html>

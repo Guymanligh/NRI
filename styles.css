@@ -417,3 +417,108 @@ html.light .monaco-editor .view-lines .current-line {
 html.light .monaco-editor .selected-text {
     background-color: rgba(130,80,223,0.2);
 }
+/* ====================== PYTHON INTERPRETER ====================== */
+
+#py-editor-container {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+}
+
+html.light #py-editor-container {
+    background: rgba(255,255,255,0.7);
+    border-color: var(--border);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+}
+
+#editor {
+    width: 100%;
+    height: 350px;
+    border: 1px solid var(--code-border);
+    border-radius: 12px;
+    margin-bottom: 18px;
+    overflow: hidden;
+}
+
+/* Кнопки */
+.py-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.py-buttons button {
+    flex: 1;
+    padding: 12px;
+    font-size: 1.2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+/* RUN button */
+#run-btn {
+    background: var(--accent1);
+    color: #fff;
+}
+#run-btn:hover {
+    background: #5f32c8;
+}
+
+/* DOWNLOAD button */
+#download-btn {
+    background: var(--accent2);
+    color: #fff;
+}
+#download-btn:hover {
+    background: #e76a58;
+}
+
+/* Output */
+.output {
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    padding: 18px;
+    border-radius: 12px;
+}
+
+.output h3 {
+    margin-bottom: 10px;
+    color: var(--text);
+}
+
+#output-area {
+    color: #a5e6a1;
+    white-space: pre-wrap;
+}
+html.light #output-area {
+    color: #0a7d2a;
+}
+/* PYTHON OUTPUT */
+#output {
+    background: #161b22; /* тёмная тема */
+    color: #a5e6a1;
+    padding: 18px 22px;
+    border-radius: 12px;
+    margin-top: 16px;
+    min-height: 150px; /* биіктік */
+    border: 1px solid #30363d;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    line-height: 1.5;
+    overflow-y: auto; /* скролл */
+    white-space: pre-wrap; /* жаңа жолдарға мүмкіндік */
+}
+
+/* Светлая тема */
+html.light #output {
+    background: #ffffff;
+    color: #24292f;
+    border-color: #d0d7de;
+}
