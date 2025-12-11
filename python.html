@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnProgLang: Python</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.49.0/min/vs/loader.js"></script>
     <script>
         (function () {
@@ -16,7 +16,7 @@
             } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
                 document.documentElement.classList.add('light');
             }
-        });
+        })();
     </script>
 </head>
 <body>
@@ -73,6 +73,9 @@
 
             </div>
 
+            <div id="py-status" aria-live="polite">Pyodide жүктелуде...</div>
+            <button id="py-reload" class="btn-download" style="margin-top:8px;">Қайта жүктеу</button>
+
             <div id="output"></div>
 
         </section>
@@ -83,7 +86,7 @@
         <p>© LearnProgLang 2025. Барлық құқықтар қорғалған.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.0/full/pyodide.js"></script>
-    <script src="../script.js" defer></script>
+    <script src="https://unpkg.com/pyodide@0.23.4/full/pyodide.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

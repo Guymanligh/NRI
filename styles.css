@@ -307,9 +307,9 @@ html.light main h2::after {
 
 /* Кнопка смены темы */
 .theme-toggle {
-  position: absolute;
-  top: 1.8rem;
-  right: 2rem;
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
   background: rgba(88, 166, 255, 0.2);
   border: 1px solid rgba(88, 166, 255, 0.4);
   color: #58a6ff;
