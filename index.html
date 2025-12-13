@@ -5,29 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnPython</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="theme-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.49.0/min/vs/loader.js"></script>
-    <script>
-        (function () {
-            const html = document.documentElement;
-            const saved = localStorage.getItem('theme');
-
-            if (saved === 'light') {
-                html.classList.add('light');
-            } 
-            else if (saved === 'dark') {
-                html.classList.remove('light');
-            } 
-            else {
-                // Егер браузердің жүйелік жарық режимі light болса
-                if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-                    html.classList.add('light');
-                }
-            }
-        })();
-
-    </script>
+    
+    <script defer src="loader.js"></script>
 </head>
 <body>
+    <div id="page-loader">
+        <div class="loader-ring"></div>
+        <div class="loader-text">Жүктелуде</div>
+    </div>
     <header>
         <h1>LearnPython</h1>
         <p>Бағдарламалау тілдерін үйренуге арналған қосымша.</p>
@@ -49,6 +36,5 @@
         <p>&copy; LearnPython. Барлық құқықтар қорғалған.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/pyodide/v0.24.0/full/pyodide.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>

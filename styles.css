@@ -362,3 +362,69 @@ header h2 {
 html.light header h2 {
     color: #24292f;
 }
+/* ====================== PAGE LOADER ====================== */
+#page-loader {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 17, 23, 0.96);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+html.light #page-loader {
+  background: rgba(246, 248, 250, 0.96);
+}
+
+/* Кольцо */
+.loader-ring {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 5px solid rgba(255,255,255,0.15);
+  border-top-color: #58a6ff;
+  animation: loader-spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+html.light .loader-ring {
+  border: 5px solid rgba(0,0,0,0.1);
+  border-top-color: #8250df;
+}
+
+/* Текст */
+.loader-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #58a6ff, #f472b6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: loader-pulse 1.4s infinite ease-in-out;
+}
+
+html.light .loader-text {
+  background: linear-gradient(90deg, #8250df, #fd8c73);
+  -webkit-background-clip: text;
+}
+
+/* Анимации */
+@keyframes loader-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes loader-pulse {
+  0% { opacity: .3; }
+  50% { opacity: 1; }
+  100% { opacity: .3; }
+}
+
+/* Скрытие */
+#page-loader.hide {
+  opacity: 0;
+  visibility: hidden;
+}

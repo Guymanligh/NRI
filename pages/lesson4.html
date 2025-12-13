@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnPython : 4 сабақ</title>
     <link rel="stylesheet" href="../styles.css">
+    <script src="../theme-init.js"></script>
     
+    <script defer src="../loader.js"></script>
 </head>
 <body>
+    <div id="page-loader">
+        <div class="loader-ring"></div>
+        <div class="loader-text">Жүктелуде</div>
+    </div>
     <header>
         <h1>LearnPython</h1>
         <h2>4 сабақ : Python-да 1-ші ойын құрастыру</h2>
@@ -22,41 +28,17 @@
     <main>
         <h2>Елес үйі</h2>
         <p>Осы қарапайым ойынды зерттей отырып, біз Python тілінде бағдарламалау кезінде ескеру қажет негізгі ойларды бөліп көрсетеміз. Бағдарлама кодын енгізіп, оны іске қосыңыз - сіз аңдыған үйден құтыла аласыз ба?</p>
-        <div class="py-code"># Ghost Game<br>from random import randint<br></div>
+        <div class="code-py"># Ghost Game<br>from random import randint<br>print("Елес ойыны")<br>feeling_brave = True<br>score = 0<br>while feeling_brave:<br>&nbsp;&nbsp;&nbsp;&nbsp;ghost_door = randint(1, 3)<br>&nbsp;&nbsp;&nbsp;&nbsp;print("Алда үш есік...")<br>&nbsp;&nbsp;&nbsp;&nbsp;print("Біреудің артында елес.")<br>&nbsp;&nbsp;&nbsp;&nbsp;print("Қай есікті ашасыз?")<br>&nbsp;&nbsp;&nbsp;&nbsp;door = input("1, 2, немесе 3")<br>&nbsp;&nbsp;&nbsp;&nbsp;door_num = int(door)<br>&nbsp;&nbsp;&nbsp;&nbsp;if door_num == ghost_door:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("ЕЛЕС!")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;feeling_brave = False<br>&nbsp;&nbsp;&nbsp;&nbsp;else:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Елес жоқ!")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Сіз келесі бөлмеге кіресіз")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;score = score + 1<br>print("Қашыңыз!")<br>print("Ойын аяқталды! Сіздің алған ұпайыңыз", score)</div>
+        <h2>Қалай іске қосу керек?</h2>
+        <ol>
+            <li>Кодты <a href="../python.html#interpreter">интерпретаторға</a> теріңіз</li>
+            <li>Орындау батырмасын басыңыз.</li>
+            <li>Ойын ойнаңыз.</li>
+        </ol>
     </main>
     <footer>
         <p>© LearnPython 2025. Барлық құқықтар қорғалған.</p>
     </footer>
-    <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const html = document.documentElement;
-    const btn = document.getElementById("theme-toggle");
-
-    if (!btn) return;
-
-    const sun = btn.querySelector(".sun");
-    const moon = btn.querySelector(".moon");
-
-    function updateIcon() {
-        const isLight = html.classList.contains("light");
-        sun.style.opacity = isLight ? "0" : "1";
-        moon.style.opacity = isLight ? "1" : "0";
-    }
-
-    btn.addEventListener("click", () => {
-        html.classList.toggle("light");
-
-        localStorage.setItem(
-            "theme",
-            html.classList.contains("light") ? "light" : "dark"
-        );
-
-        updateIcon();
-    });
-
-    updateIcon();
-});
-</script>
-
+    
 </body>
 </html>
