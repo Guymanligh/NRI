@@ -3,27 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearnProgLang</title>
+    <title>LearnPython</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.49.0/min/vs/loader.js"></script>
     <script>
-        (function() {
+        (function () {
+            const html = document.documentElement;
             const saved = localStorage.getItem('theme');
+
             if (saved === 'light') {
-            document.documentElement.classList.add('light');
-            } else if (saved === 'dark') {
-            document.documentElement.classList.remove('light');
-            } else {
-            if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-                document.documentElement.classList.add('light');
-            }
+                html.classList.add('light');
+            } 
+            else if (saved === 'dark') {
+                html.classList.remove('light');
+            } 
+            else {
+                // Егер браузердің жүйелік жарық режимі light болса
+                if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+                    html.classList.add('light');
+                }
             }
         })();
+
     </script>
 </head>
 <body>
     <header>
-        <h1>LearnProgLang</h1>
+        <h1>LearnPython</h1>
         <p>Бағдарламалау тілдерін үйренуге арналған қосымша.</p>
         <button class="theme-toggle" id="theme-toggle" aria-label="Сменить тему">
             <span class="sun">☀️</span>
@@ -40,7 +46,7 @@
         </a>
     </main>
     <footer>
-        <p>&copy; LearnProgLang. Барлық құқықтар қорғалған.</p>
+        <p>&copy; LearnPython. Барлық құқықтар қорғалған.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/pyodide/v0.24.0/full/pyodide.js"></script>
     <script src="script.js"></script>
