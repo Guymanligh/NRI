@@ -409,6 +409,7 @@ html.light .loader-ring {
 
 html.light .loader-text {
   background: linear-gradient(90deg, #8250df, #fd8c73);
+  background-clip: text;
   -webkit-background-clip: text;
 }
 
@@ -427,4 +428,14 @@ html.light .loader-text {
 #page-loader.hide {
   opacity: 0;
   visibility: hidden;
+}
+fieldset {
+  padding: 10px;
+}
+table th,table td {
+  border: grey thin solid;
+  padding: 4px;
+}
+table th {
+  background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
 }
