@@ -1,10 +1,11 @@
 /* ==========================================================================
-   LearnPython: Main Logic
-   Содержит: Блокировку уроков, Monaco Editor, Pyodide Worker
-   ========================================================================== */
+ * LearnPython: Main Logic (Логика без блокировки уроков)
+ * Содержит: Monaco Editor, Pyodide Worker
+ * ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-    initLessonLocking();
+    // initLessonLocking(); // <-- УДАЛЕНО: Логика блокировки уроков
+    
     // Инициализируем интерпретатор только если мы на странице с редактором
     if (document.getElementById('editor')) {
         initInterpreter();
@@ -12,33 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* --- 1. Логика Блокировки Уроков --- */
-function initLessonLocking() {
-    // Получаем прогресс (по умолчанию 0 - ничего не пройдено)
-    const completedLesson = parseInt(localStorage.getItem('completedLesson') || '0', 10);
-    
-    const lessons = document.querySelectorAll('.card.lesson');
-    lessons.forEach(link => {
-        const lessonIdStr = link.getAttribute('data-lesson-id');
-        if (!lessonIdStr) return; // Пропускаем элементы без ID
-
-        const lessonId = parseInt(lessonIdStr, 10);
-
-        // Формула: Урок доступен, если его номер <= (пройденные + 1)
-        if (lessonId > completedLesson + 1) {
-            link.classList.add('locked');
-            link.removeAttribute('href'); // Убираем ссылку
-            link.title = "Алдымен алдыңғы сабақты аяқтаңыз (Пройдите предыдущий урок)";
-            
-            // Обработчик клика для заблокированных
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                alert(`⚠️ Бұл сабақ әлі құлыптаулы. ${completedLesson + 1}-сабақты аяқтаңыз.`);
-            });
-        } else {
-            link.classList.remove('locked');
-        }
-    });
-}
+// Вся функция initLessonLocking была удалена
 
 /* --- 2. Интерпретатор Python (Monaco + Web Worker) --- */
 function initInterpreter() {
@@ -188,7 +163,7 @@ builtins.input = async_input
     require(['vs/editor/editor.main'], () => {
         const isLight = document.documentElement.classList.contains('light');
         editor = monaco.editor.create(document.getElementById('editor'), {
-            value: `# Мысал:\nimport time\nprint("Сәлем! Санау басталды...")\nfor i in range(1, 6):\n    print(i)\n    time.sleep(0.5)\nprint("Аяқталды!")`,
+            value: `# Мысал:\nimport time\nprint("Сәлем! Санау басталды...")\nfor i in range(1, 6):\n \tprint(i)\n \ttime.sleep(0.5)\nprint("Аяқталды!")`,
             language: 'python',
             theme: isLight ? 'vs' : 'vs-dark',
             automaticLayout: true,
