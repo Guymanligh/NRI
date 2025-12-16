@@ -477,7 +477,7 @@ html.dark .card.lesson.locked {
    Стили Интерпретатора
    ========================================= */
 .interpreter-wrap {
-    background: var(--bg-secondary, #ffffff);
+    background: var(--code-bg, #1f1f1f);
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
@@ -555,16 +555,7 @@ html.dark #clear { color: #58a6ff; border-color: #58a6ff; }
     font-size: 14px;
     outline: none;
 }
-.finles {
-    width: 30%;
-    height: 10%;
-    margin-left: auto;
-    margin-right: auto;
-    background: var(--text, #ffffff);
-    color: var(--code-bg, #000000);
-    border: none;
-    border-radius: 10px;
-    backdrop-filter: blur(10px); 
-    -webkit-backdrop-filter: blur(10px);
-    margin: auto;
+
+.warn {
+  color: #ff0000;
 }

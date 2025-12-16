@@ -31,7 +31,7 @@ function initInterpreter() {
     // --- Код Воркера (Запускается в отдельном потоке) ---
     const workerScript = `
         // !!! КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Воркеру нужен importScripts для Pyodide !!!
-        importScripts("https://cdn.jsdelivr.net/pyodide/v0.24.0/full/pyodide.js");
+        importScripts("https://cdn.jsdelivr.net/pyodide/v0.27.0/full/pyodide.js");
 
         let pyodide = null;
         let inputResolver = null;
@@ -163,7 +163,7 @@ builtins.input = async_input
     require(['vs/editor/editor.main'], () => {
         const isLight = document.documentElement.classList.contains('light');
         editor = monaco.editor.create(document.getElementById('editor'), {
-            value: `# Мысал:\nimport time\nprint("Сәлем! Санау басталды...")\nfor i in range(1, 6):\n \tprint(i)\n \ttime.sleep(0.5)\nprint("Аяқталды!")`,
+            value: `# Мысал:\nimport random\n\na = random.randint(1, 1000)\nb = int(await input("Санды енгізіңіз"))\n\nprint("Қосынды: " + str( a + b))`,
             language: 'python',
             theme: isLight ? 'vs' : 'vs-dark',
             automaticLayout: true,
