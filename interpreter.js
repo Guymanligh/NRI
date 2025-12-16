@@ -157,7 +157,7 @@ builtins.input = async_input
         };
     }
 
-    // --- Monaco Editor Setup ---
+    
     // !!! КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: require.config необходим для загрузки модулей Monaco !!!
     require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.49.0/min/vs' } });
     require(['vs/editor/editor.main'], () => {
