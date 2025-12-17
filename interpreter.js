@@ -163,7 +163,7 @@ builtins.input = async_input
     require(['vs/editor/editor.main'], () => {
         const isLight = document.documentElement.classList.contains('light');
         editor = monaco.editor.create(document.getElementById('editor'), {
-            value: `# Мысал:\nimport random\n\na = random.randint(1, 1000)\nb = int(await input("Санды енгізіңіз"))\n\nprint("Қосынды: " + str( a + b))`,
+            value: `# Мысал:\nimport random\n\na = random.randint(1, 1000)\nb = int(await input("Санды енгізіңіз"))\n\nprint(f"Кездейсоқ сан: {a}")\nprint("Қосынды: " + str( a + b))`,
             language: 'python',
             theme: isLight ? 'vs' : 'vs-dark',
             automaticLayout: true,
